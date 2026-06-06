@@ -12,9 +12,8 @@ class MobilKonvensional extends Kendaraan {
         $this->jenisBahanBakar = $jenisBahanBakar;
     }
 
-    public function hitungHargaTotal(): float {
-        $pajakEmisi = $this->hargaDasar * 0.10;
-        $pajakCC = $this->kapasitasMesin * 2000;
-        return $this->hargaDasar + $pajakEmisi + $pajakCC;
+    // Overriding Polimorfisme: (2% * hargaDasar) + (cc * 500)
+    public function hitungPajakTahunan(): float {
+        return ($this->hargaDasar * 0.02) + ($this->kapasitasMesin * 500);
     }
 }

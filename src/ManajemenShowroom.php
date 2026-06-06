@@ -20,7 +20,6 @@ class ManajemenShowroom {
         $this->koleksiKendaraan = [];
 
         foreach ($rawData as $row) {
-            // Membaca index 'id_kendaraan' sesuai dengan field primary key SQL Anda
             $id = (int)$row['id_kendaraan'];
             $brand = $row['brand'];
             $model = $row['model'];
@@ -39,7 +38,6 @@ class ManajemenShowroom {
                     (int)$row['kapasitas_baterai'], (int)$row['jarak_tempuh']
                 );
             } elseif ($kategori === 'MotorBesar') {
-                // Diselaraskan membaca '$row['tipe_rantai']' dari SQL Anda
                 $this->koleksiKendaraan[] = new MotorBesar(
                     $id, $brand, $model, $tahun, $hargaDasar,
                     $row['tipe_rantai'], $row['mode_berkendara']
@@ -51,9 +49,9 @@ class ManajemenShowroom {
     public function tampilkanLaporanShowroom(): void {
         echo "<pre>";
         echo "========================================================================================\n";
-        echo "                      LAPORAN POLIMORFISME SHOWROOM KENDARAAN                           \n";
+        echo "                    LAPORAN POLIMORFISME: KALKULASI PAJAK TAHUNAN                       \n";
         echo "========================================================================================\n";
-        printf("%-3s | %-12s | %-25s | %-15s | %-18s\n", "ID", "Kategori", "Unit Kendaraan", "Harga Dasar", "Harga Akhir (+Pajak)");
+        printf("%-3s | %-12s | %-25s | %-15s | %-18s\n", "ID", "Kategori", "Unit Kendaraan", "Harga Dasar", "Pajak Tahunan");
         echo "----------------------------------------------------------------------------------------\n";
 
         foreach ($this->koleksiKendaraan as $knd) {
@@ -64,7 +62,7 @@ class ManajemenShowroom {
                 $knd->getKategori(),
                 strlen($namaUnit) > 25 ? substr($namaUnit, 0, 22) . '...' : $namaUnit,
                 number_format($knd->getHargaDasar(), 0, ',', '.'),
-                number_format($knd->hitungHargaTotal(), 0, ',', '.')
+                number_format($knd->hitungPajakTahunan(), 0, ',', '.')
             );
         }
         echo "========================================================================================\n";

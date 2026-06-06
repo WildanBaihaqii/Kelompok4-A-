@@ -12,9 +12,8 @@ class MobilListrik extends Kendaraan {
         $this->jarakTempuh = $jarakTempuh;
     }
 
-    public function hitungHargaTotal(): float {
-        $insentifSubsidi = $this->hargaDasar * 0.05;
-        $biayaSertifikasiBaterai = 5000000.00;
-        return $this->hargaDasar - $insentifSubsidi + $biayaSertifikasiBaterai;
+    // Overriding Polimorfisme: 0.5% * hargaDasar
+    public function hitungPajakTahunan(): float {
+        return $this->hargaDasar * 0.005;
     }
 }

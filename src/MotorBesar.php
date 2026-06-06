@@ -12,8 +12,8 @@ class MotorBesar extends Kendaraan {
         $this->modeBerkendara = $modeBerkendara;
     }
 
-    public function hitungHargaTotal(): float {
-        $ppnbm = $this->hargaDasar * 0.15;
-        return $this->hargaDasar + $ppnbm;
+    // Overriding Polimorfisme Pajak Moge: 1.5% * hargaDasar
+    public function hitungPajakTahunan(): float {
+        return $this->hargaDasar * 0.015;
     }
 }
