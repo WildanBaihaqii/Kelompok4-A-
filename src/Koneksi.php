@@ -1,14 +1,13 @@
 <?php
+declare(strict_types=1);
 
-class Database {
-    // Sesuai dengan konfigurasi sistem Arch Linux & MariaDB Anda
-    private $host = "127.0.0.1";
-    private $username = "Baihaqy";
-    private $password = "1023"; // Masukkan password root MariaDB Anda
-    private $database = "showroom"; // Nama database yang Anda buat di MariaD
-    protected $conn;
+class Koneksi {
+    private string $host = "127.0.0.1";
+    private string $username = "Baihaqy";
+    private string $password = "1023"; // <--- Sesuaikan password MariaDB Anda
+    private string $database = "showroom";
+    protected mysqli $conn;
 
-    // OOP Constructor otomatis memicu koneksi saat instansiasi objek
     public function __construct() {
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
 
@@ -17,9 +16,8 @@ class Database {
         }
     }
 
-    // OOP Destructor otomatis menutup koneksi di akhir program
     public function __destruct() {
-        if ($this->conn) {
+        if (isset($this->conn) && $this->conn) {
             $this->conn->close();
         }
     }
