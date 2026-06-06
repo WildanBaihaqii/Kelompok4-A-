@@ -25,5 +25,6 @@ abstract class Kendaraan {
     public function getHargaDasar(): float { return $this->hargaDasar; }
     public function getKategori(): string { return $this->kategori; }
 
-    abstract public function hitungHargaTotal(): float;
+    // Kontrak abstrak yang akan di-override oleh kelas anak untuk menghitung pajak
+    abstract public function hitungPajakTahunan(): float;
 }
